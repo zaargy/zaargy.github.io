@@ -1,10 +1,16 @@
 #!/usr/bin/env ruby
 
-require 'kramdown'
-require 'tempfile'
+require "front_matter_parser"
+require "tempfile"
+require "tilt"
+require "yaml"
 
 LINK_REGEXP = /\[\[\s*(\S+)\s*\]\]/
-MARKDOWN_TEMPLATE = "# %s"
+MARKDOWN_TEMPLATE = """---
+title: %s
+---
+
+# %s"""
 
 def generate_required_markdown_files_from_magic_links_in_markdown_file(markdown_file)
   markdown_file_contents = File.read(markdown_file)
@@ -15,7 +21,7 @@ def generate_required_markdown_files_from_magic_links_in_markdown_file(markdown_
 
     unless File.exist? markdown_file_to_create
       File.open(markdown_file_to_create, 'w') do |f|
-        f.write(MARKDOWN_TEMPLATE % markdown_title)
+        f.write(MARKDOWN_TEMPLATE % [markdown_title, markdown_title])
       end
     end
   end
@@ -25,19 +31,28 @@ def generate_html_file_from_markdown(markdown_file)
   markdown_file_contents = File.read(markdown_file).gsub(LINK_REGEXP, '[\1](\1.html)')
 
   html_file = markdown_file.gsub(".md", ".html")
-  html_file_contents = Kramdown::Document.new(markdown_file_contents).to_html
+
+  parsed = FrontMatterParser::Parser.new(:md).call(markdown_file_contents)
+
+  layout = Tilt['erb'].new("layout.html.erb")
+  data = Tilt['markdown'].new { parsed.content }
+  html_file_contents = layout.render(self, parsed.front_matter) { data.render }
 
   File.open(html_file, "w") do |f|
     f.write(html_file_contents)
   end
 end
 
+def markdown_files
+  Dir.glob("*.md").reject { |x| x[/README.md/] }
+end
+
 puts "Generating site..."
 
-Dir.glob("*.md").each do |markdown_file|
+markdown_files.each do |markdown_file|
   generate_required_markdown_files_from_magic_links_in_markdown_file markdown_file
 end
 
-Dir.glob("*.md").each do |markdown_file|
+markdown_files.each do |markdown_file|
   generate_html_file_from_markdown markdown_file
 end

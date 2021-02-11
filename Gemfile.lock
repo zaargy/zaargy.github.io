@@ -1,15 +1,17 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    kramdown (2.3.0)
-      rexml
-    rexml (3.2.4)
+    front_matter_parser (0.2.1)
+    rdiscount (2.2.0.2)
+    tilt (2.0.10)
 
 PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  kramdown
+  front_matter_parser
+  rdiscount
+  tilt
 
 BUNDLED WITH
    2.2.3

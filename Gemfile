@@ -1,3 +1,5 @@
 source "https://rubygems.org"
 
-gem "kramdown"
+gem "front_matter_parser"
+gem "rdiscount"
+gem "tilt"
