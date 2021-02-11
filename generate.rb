@@ -9,7 +9,7 @@ MARKDOWN_TEMPLATE = "# %s"
 def generate_required_markdown_files_from_magic_links_in_markdown_file(markdown_file)
   markdown_file_contents = File.read(markdown_file)
 
-  markdown_file_contents.match(LINK_REGEXP) do |markdown_file_link|
+  markdown_file_contents.to_enum(:scan, LINK_REGEXP).map { Regexp.last_match }.each do |markdown_file_link|
     markdown_title = markdown_file_link[1]
     markdown_file_to_create = "#{markdown_title}.md"
 
