@@ -24,3 +24,8 @@ up: FORCE
 
 preview: FORCE
 	@xdg-open  http://localhost:5555
+
+deploy: FORCE
+	git add .
+	git commit -m "dont know much about history"
+	git push origin master

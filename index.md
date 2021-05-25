@@ -13,7 +13,3 @@ a sort of off-grid [[indieweb]] homepage
 ## news
 
 I am recovering from a shin injury.
-
-## links
-
-Adam Keen Ashtanga - A good teacher of the Ashtanga method of yoga
