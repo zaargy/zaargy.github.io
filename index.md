@@ -10,6 +10,8 @@ a mid-thirties Scottish guy's revolutionary attempt to reinvigorate the web
 
 a sort of off-grid [[indieweb]] homepage
 
+a purposefully non-algorithmacally generated repository of ideas/thoughts/musings
+
 ## news
 
-I am recovering from a shin injury.
+I am recovering from a shin injury or how I injured myself and reconsidered
