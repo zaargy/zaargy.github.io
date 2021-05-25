@@ -10,7 +10,7 @@ a mid-thirties Scottish guy's revolutionary attempt to reinvigorate the web
 
 a sort of off-grid [[indieweb]] homepage
 
-a purposefully non-algorithmacally generated repository of ideas/thoughts/musings
+a purposefully non-algorithmacally generated [[repository of ideas]]
 
 ## news
 
