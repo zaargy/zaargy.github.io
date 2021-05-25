@@ -1,19 +1,26 @@
-run_with_dc = CURRENT_UID=$(shell id -u):$(shell id -g) docker-compose run mysite
+dc_mysite = CURRENT_UID=$(shell id -u):$(shell id -g) docker-compose run mysite
 
 .DEFAULT_GOAL := install_generate
 
 FORCE:
 
 clean: FORCE
-	@$(run_with_dc) find *.html -delete
-	
+	@$(dc_mysite) find *.html -delete
+
 install: FORCE
-	@$(run_with_dc) bundle install
+	@$(dc_mysite) bundle install
 
 generate: FORCE
-	@$(run_with_dc) bundle exec ruby ./generate.rb
+	@$(dc_mysite) bundle exec ruby ./generate.rb
 
 install_generate: install generate
 
 shell: FORCE
-	@$(run_with_dc) /bin/sh
+	@$(dc_mysite) /bin/sh
+
+up: FORCE
+	@docker-compose down
+	@docker-compose up -d
+
+preview: FORCE
+	@xdg-open  http://localhost:5555

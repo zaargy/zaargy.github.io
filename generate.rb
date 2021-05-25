@@ -47,6 +47,10 @@ def markdown_files
   Dir.glob("*.md").reject { |x| x[/README.md/] }
 end
 
+def html_files
+  Dir.glob("*.html")
+end
+
 puts "Generating site..."
 
 markdown_files.each do |markdown_file|
@@ -55,4 +59,8 @@ end
 
 markdown_files.each do |markdown_file|
   generate_html_file_from_markdown markdown_file
+end
+
+html_files.each do |html_file|
+
 end
