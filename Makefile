@@ -26,6 +26,6 @@ preview: FORCE
 	@xdg-open  http://localhost:5555
 
 deploy: generate
-	git add .
-	git commit -m "dont know much about history"
-	git push
+	@git add .
+	@git commit -m "dont know much about history"
+	@git push
