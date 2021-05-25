@@ -28,4 +28,4 @@ preview: FORCE
 deploy: FORCE
 	git add .
 	git commit -m "dont know much about history"
-	git push origin master
+	git push
