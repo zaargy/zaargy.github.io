@@ -14,4 +14,4 @@ a purposefully non-algorithmacally generated repository of ideas/thoughts/musing
 
 ## news
 
-I am recovering from a shin injury.
+I am recovering from a shin injury
